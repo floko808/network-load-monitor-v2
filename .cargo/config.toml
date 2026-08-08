@@ -1,0 +1,15 @@
+# Link the MSVC C runtime statically.
+#
+# Without this the binaries import VCRUNTIME140.dll and the api-ms-win-crt-*
+# stubs, which are *not* part of Windows — they arrive with the Visual C++
+# Redistributable. On a machine that has never had it installed the executable
+# simply fails to start, and for a GUI-subsystem binary it does so with no
+# visible error at all.
+#
+# Static linking costs a few hundred KB and makes the promise the README makes
+# actually true: copy one file across and run it.
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "target-feature=+crt-static"]

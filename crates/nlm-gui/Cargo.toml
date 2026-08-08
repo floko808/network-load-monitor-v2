@@ -1,0 +1,33 @@
+[package]
+name = "nlm-gui"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Desktop front end for Network Load Monitor V2"
+
+[[bin]]
+name = "network-monitor-gui"
+path = "src/main.rs"
+
+[dependencies]
+nlm-core.workspace = true
+# The UI is rasterised on the CPU and blitted with GDI (Windows) or X11/Wayland
+# (Linux) — no OpenGL, no Direct3D, no Vulkan, no driver of any kind.
+#
+# This is not a preference. Substation tooling runs in virtual machines, and a
+# Hyper-V guest offers no 3D driver at all: the OpenGL backend fails with
+# "requires opengl 2.0+", and Direct3D is no rescue because there is no adapter
+# to enumerate. Shipping a software OpenGL library instead would mean 59 MB of
+# DLLs alongside the executable, which breaks the single-portable-binary
+# requirement. Rendering in software ourselves satisfies both.
+egui = "0.34"
+egui_extras = "0.34"
+egui_software_backend = "0.0.3"
+# The XDG portal backend avoids a GTK build dependency. It must be paired with
+# async-std, not tokio: rfd drives the dialog future with `pollster`, so a
+# tokio-backed zbus panics with "there is no reactor running" the moment a
+# dialog opens — including the message box used to report panics.
+rfd = { version = "0.15", default-features = false, features = ["xdg-portal", "async-std"] }

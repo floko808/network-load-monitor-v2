@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = ["crates/nlm-core", "crates/nlm-cli", "crates/nlm-gui"]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.82"
+license = "MIT"
+authors = ["Fabio Barros"]
+repository = "https://github.com/floko808/network-load-monitor-v2"
+description = "Network Load Monitor V2 - captures Ethernet frames on IEC 61850 substation networks and reports per-protocol throughput and link load"
+
+[workspace.dependencies]
+nlm-core = { path = "crates/nlm-core", version = "0.0.1" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"

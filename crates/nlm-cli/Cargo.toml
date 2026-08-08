@@ -1,0 +1,19 @@
+[package]
+name = "nlm-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Terminal front end for Network Load Monitor V2"
+
+[[bin]]
+name = "network-monitor"
+path = "src/main.rs"
+
+[dependencies]
+nlm-core.workspace = true
+clap = { version = "4.5", features = ["derive", "wrap_help"] }
+crossterm = "0.28"
+ctrlc = "3.4"

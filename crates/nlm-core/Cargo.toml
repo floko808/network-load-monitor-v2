@@ -1,0 +1,23 @@
+[package]
+name = "nlm-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Capture engine, frame classifier and statistics model for Network Load Monitor V2"
+
+[dependencies]
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_NetworkManagement_IpHelper",
+    "Win32_NetworkManagement_Ndis",
+    "Win32_Networking_WinSock",
+] }

@@ -1,0 +1,17 @@
+/target
+/dist
+**/*.rs.bk
+*.pdb
+
+# Local capture fixtures used for manual verification; these are large and
+# often site-specific, so they are kept out of the repository.
+/test-captures
+*.pcap
+*.pcapng
+*.cap
+
+/.cache
+
+# Per-machine agent settings. The project skill in .claude/skills/ is tracked.
+.claude/settings.local.json
+.claude/settings.local.json.tmp.*
