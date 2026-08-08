@@ -44,10 +44,18 @@ target machine: no Python, no Tk, no packet-capture library.
 
 ## Quick start
 
-**1. Get the binaries.** Either take them from `dist/` after a build, or build
-them yourself — see [Building from source](#building-from-source). Nothing else
-needs installing to *read a capture file*; live capture needs the permissions
-described [below](#capture-permissions).
+**1. Get the binaries.** Download the archive for your platform from
+[Releases](https://github.com/floko808/network-load-monitor-v2/releases/latest),
+or build them yourself — see [Building from source](#building-from-source).
+Check your system against [System requirements](#system-requirements) first,
+particularly the glibc floor on Linux. Nothing needs installing to *read a
+capture file*; live capture needs the permissions described
+[below](#capture-permissions).
+
+```bash
+tar xzf network-load-monitor-v2-0.0.1-x86_64-linux.tar.gz
+cd network-load-monitor-v2-0.0.1-x86_64-linux
+```
 
 **2. Try it on a capture file first.** This needs no privileges on any
 platform and is the fastest way to see what the tool does:
