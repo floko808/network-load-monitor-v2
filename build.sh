@@ -98,16 +98,23 @@ smoke_test() {
 # these is a license violation, so they are packaged rather than left to
 # whoever does the copying.
 #
-# LICENSE-APACHE is here even though this project is MIT: winit and several
-# other dependencies are Apache-2.0, which requires its text reach every
-# recipient. It is a third-party notice, not a second license for this code.
+# LICENSE is this project's own, and the only one that governs its code: MIT.
+# licenses/Apache-2.0.txt is a third-party notice, not a second license for
+# this code — winit and several other dependencies are Apache-2.0, which
+# requires its text reach every recipient of a binary containing them. It lives
+# under licenses/ rather than at the root so that nothing, human or tooling,
+# reads it as an alternative license for this project.
 copy_legal() {
     say "Adding license files"
-    for f in LICENSE-MIT LICENSE-APACHE THIRD-PARTY-LICENSES.md; do
+    for f in LICENSE THIRD-PARTY-LICENSES.md; do
         [ -f "$ROOT/$f" ] || die "$f is missing; the distribution may not be shipped without it"
         cp "$ROOT/$f" "$DIST/"
     done
-    printf '  %s\n' "LICENSE-MIT, LICENSE-APACHE, THIRD-PARTY-LICENSES.md: ok"
+    [ -f "$ROOT/licenses/Apache-2.0.txt" ] \
+        || die "licenses/Apache-2.0.txt is missing; Apache-2.0 dependencies require it be distributed"
+    mkdir -p "$DIST/licenses"
+    cp "$ROOT/licenses/Apache-2.0.txt" "$DIST/licenses/"
+    printf '  %s\n' "LICENSE, THIRD-PARTY-LICENSES.md, licenses/Apache-2.0.txt: ok"
 }
 
 checksums() {

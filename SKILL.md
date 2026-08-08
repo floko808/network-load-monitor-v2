@@ -739,11 +739,13 @@ readers and the raw socket backend are written directly. Note that `dumpcap` is
 *executed* as a separate process, never linked, so Wireshark's GPL does not
 reach this code.
 
-Ship `LICENSE-MIT`, `LICENSE-APACHE` and `THIRD-PARTY-LICENSES.md` with any
-binary. `LICENSE-APACHE` is not a second license for this code — `winit` and a
-handful of others are Apache-2.0 only, and that license requires its text reach
-every recipient of the binary. `build.sh` copies all three into `dist/` and
-fails if one is missing.
+Ship `LICENSE`, `THIRD-PARTY-LICENSES.md` and `licenses/Apache-2.0.txt` with
+any binary. Only the first is this project's license. The Apache text is a
+third-party notice — `winit` and a handful of others are Apache-2.0 only, and
+that license requires its text reach every recipient of the binary — and it is
+kept under `licenses/` so that neither a reader nor GitHub's license detector
+takes it for a second license on this code. `build.sh` copies all three into
+`dist/` and fails if one is missing.
 
 ## 15. Testing
 

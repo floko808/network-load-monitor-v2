@@ -5,8 +5,8 @@ network interface (or reads a `.pcap`/`.pcapng` file) and classifies traffic by
 protocol, VLAN and redundancy scheme (HSR/PRP), reporting throughput and
 link-load percentage per protocol.
 
-Version 0.0.1 — License: [MIT](LICENSE-MIT). Third-party components are listed
-in [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).
+Version 0.0.1 — License: [MIT](LICENSE). Third-party components are listed in
+[THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).
 
 ![The desktop front end showing a loaded capture](docs/screenshots/gui.png)
 
@@ -500,8 +500,8 @@ Artifacts land in `dist/`:
 ```
 dist/linux/network-monitor          dist/windows/network-monitor.exe
 dist/linux/network-monitor-gui      dist/windows/network-monitor-gui.exe
-dist/LICENSE-MIT                    dist/LICENSE-APACHE
-dist/THIRD-PARTY-LICENSES.md        dist/SHA256SUMS
+dist/LICENSE                        dist/THIRD-PARTY-LICENSES.md
+dist/licenses/Apache-2.0.txt        dist/SHA256SUMS
 ```
 
 `dist/` is therefore a complete, redistributable drop: copy the whole directory
@@ -623,17 +623,17 @@ separate process when used, never linked.
 | [libc](https://github.com/rust-lang/libc) | MIT OR Apache-2.0 | Raw socket syscalls (Unix) |
 | [winreg](https://github.com/gentoo90/winreg-rs) | MIT | Locating Wireshark (Windows) |
 
-This project's own code is licensed [MIT](LICENSE-MIT). Every dependency,
-direct and transitive, is permissively licensed and compatible with it; nothing
-copyleft is linked into either binary.
+This project is licensed [MIT](LICENSE), and MIT is the only license that
+governs its code. Every dependency, direct and transitive, is permissively
+licensed and compatible with it; nothing copyleft is linked into either binary.
 
 A few dependencies carry attribution terms of their own rather than MIT's —
 `winit` is Apache-2.0 only, the embedded default fonts add OFL-1.1 and the
 Ubuntu Font Licence, and the Linux build reaches some BSD, ISC and Unicode-3.0
-crates. This is why `LICENSE-APACHE` is still in the repository and in `dist/`
-even though the project is MIT: Apache-2.0 requires that its text reach anyone
-who receives the binary, so it ships as a third-party notice rather than as a
-license option for this code.
+crates. That is why [`licenses/Apache-2.0.txt`](licenses/Apache-2.0.txt) ships
+with an MIT project: Apache-2.0 requires its text reach anyone who receives a
+binary containing Apache-2.0 code. It is a third-party notice, not a second
+license for this code — hence `licenses/` rather than the repository root.
 [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md) lists all 239 dependencies
 with versions and explains what each exception requires. `./build.sh` copies
 all of it into `dist/`, so distributing that directory is already compliant.

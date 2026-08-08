@@ -82,13 +82,16 @@ so a copy can be verified after transfer.
 ```
 dist/linux/network-monitor          dist/windows/network-monitor.exe
 dist/linux/network-monitor-gui      dist/windows/network-monitor-gui.exe
-dist/LICENSE-MIT                    dist/LICENSE-APACHE
-dist/THIRD-PARTY-LICENSES.md        dist/SHA256SUMS
+dist/LICENSE                        dist/THIRD-PARTY-LICENSES.md
+dist/licenses/Apache-2.0.txt        dist/SHA256SUMS
 ```
 
 `copy_legal` places the three license files and fails the build if any is
 missing — `dist/` is a redistributable drop, not just binaries, and shipping it
-without them would be a license violation. Regenerate
+without them would be a license violation. `LICENSE` is the project's own (MIT);
+`licenses/Apache-2.0.txt` is a third-party notice required by `winit` and
+friends, kept out of the root so it is never read as a second project license.
+Regenerate
 `THIRD-PARTY-LICENSES.md` (the commands are at the bottom of that file) after
 any dependency change.
 

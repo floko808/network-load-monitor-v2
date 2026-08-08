@@ -1,16 +1,19 @@
 # Third-party licenses
 
-Network Load Monitor V2 is licensed [MIT](LICENSE-MIT). This file lists every
-third-party crate linked into the shipped binaries, so that a copy of
-`network-monitor` or `network-monitor-gui` can be redistributed with correct
-attribution.
+Network Load Monitor V2 is licensed [MIT](LICENSE), and MIT is the only license
+that governs this project's code. This file lists every third-party crate
+linked into the shipped binaries, so that a copy of `network-monitor` or
+`network-monitor-gui` can be redistributed with correct attribution.
 
-**Why there is still an `LICENSE-APACHE` file next to an MIT project.** Some
-dependencies are Apache-2.0 licensed, and Apache-2.0 §4(a) requires that a copy
-of the license reach every recipient of a work that contains such code. That
-file is therefore a *third-party notice*, not an alternative license for this
-project's code — there is no "or Apache-2.0, at your option" here. Do not
-delete it from a distribution.
+**Why an Apache-2.0 text ships with an MIT project.** Some dependencies —
+`winit` above all — are Apache-2.0 licensed, and Apache-2.0 §4(a) requires that
+a copy of the license reach every recipient of a work containing that code.
+[`licenses/Apache-2.0.txt`](licenses/Apache-2.0.txt) is therefore a *third-party
+notice*. It is not an alternative license for this project: there is no "or
+Apache-2.0, at your option" here, and it is kept in `licenses/` rather than at
+the repository root so that neither a reader nor GitHub's license detector
+mistakes it for one. Do not drop it from a distribution — removing it, while
+still shipping `winit`, would be the violation.
 
 ## Summary
 
@@ -49,7 +52,7 @@ still governed by its own terms in the compiled result.
 
 | Crate | License | Why it is called out |
 |---|---|---|
-| `winit` | Apache-2.0 **only** | Not dual-licensed, and the reason `LICENSE-APACHE` ships with an MIT project. Its Apache-2.0 terms — attribution, NOTICE propagation, the patent grant — apply to the distributed binary regardless of this project being MIT. Windowing for the desktop front end; both platforms. |
+| `winit` | Apache-2.0 **only** | Not dual-licensed, and the reason `licenses/Apache-2.0.txt` ships with an MIT project. Its Apache-2.0 terms — attribution, NOTICE propagation, the patent grant — apply to the distributed binary regardless of this project being MIT. Windowing for the desktop front end; both platforms. |
 | `dpi` | Apache-2.0 **AND** MIT | Conjunctive, not a choice: both sets of terms apply. Pulled in by `winit`. |
 | `self_cell` | Apache-2.0 OR GPL-2.0-only | The only mention of the GPL in the graph, and it is a *choice*. This project takes the Apache-2.0 option, so no GPL obligation attaches. Reached through `epaint`, so it is in both builds. |
 | `epaint_default_fonts` | (MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0 | Embedded font data. The SIL Open Font License and the Ubuntu Font Licence are conjunctive with the code license and apply to the font glyphs compiled into the desktop binary. Neither is copyleft over the program: OFL-1.1 restricts selling the *fonts* on their own and reserves font names, which shipping them inside an application does not trigger. |
@@ -68,10 +71,12 @@ Unicode-licensed component above is absent from the `.exe` files.
 ## Complying when you redistribute
 
 For a binary-only distribution of either executable, ship this file alongside
-it, together with `LICENSE-MIT` (this project's license) and `LICENSE-APACHE`
-(required by the Apache-2.0 dependencies). That satisfies the attribution
-requirement of every license listed here. If you redistribute the Windows build
-only, the crates marked "Linux" below do not apply.
+it, together with `LICENSE` (this project's, MIT) and
+`licenses/Apache-2.0.txt` (required by the Apache-2.0 dependencies). That
+satisfies the attribution requirement of every license listed here. If you
+redistribute the Windows build only, the crates marked "Linux" below do not
+apply — but `winit` and `dpi` are in both, so the Apache-2.0 text is always
+required.
 
 `./build.sh` copies all three into `dist/` for exactly this reason, so copying
 that directory as a whole is already compliant — there is no separate step to
