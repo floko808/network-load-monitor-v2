@@ -11,8 +11,10 @@ Version 0.0.1 — License: [MIT](LICENSE). Third-party components are listed in
 ![The desktop front end showing a loaded capture](docs/screenshots/gui.png)
 
 Written in Rust. This is a rewrite of the Python implementation (0.0.5) and
-supersedes it; see [CHANGELOG.md](CHANGELOG.md) for what changed, including
-several classification fixes.
+supersedes it — see [Compared with the Python
+version](#compared-with-the-python-version) for the two running side by side,
+and [CHANGELOG.md](CHANGELOG.md) for what changed, including several
+classification fixes.
 
 Developed by [Fabio Barros](https://github.com/floko808) with
 [Claude](https://claude.com/claude-code) (Anthropic) as an AI coding
@@ -30,6 +32,7 @@ target machine: no Python, no Tk, no packet-capture library.
 
 - [Quick start](#quick-start)
 - [Which binary should I use?](#which-binary-should-i-use)
+- [Compared with the Python version](#compared-with-the-python-version)
 - [System requirements](#system-requirements)
 - [Using the terminal front end](#using-the-terminal-front-end)
 - [Using the desktop front end](#using-the-desktop-front-end)
@@ -85,6 +88,28 @@ interface and press **▶ Start**, or **Open pcap/pcapng...** to load a file.
 
 Both read the same capture files and share one engine, so they never disagree
 about what a capture contains.
+
+## Compared with the Python version
+
+The same 66.8 MB capture (105,311 packets), the same `--all`, run first through
+the Python implementation 0.0.5 and then through V2 — recorded in one terminal,
+unedited:
+
+![The Python 0.0.5 monitor and V2 reading the same capture one after the other](docs/videos/diff-v1-vs-v2.gif)
+
+The Python version spends about 20 seconds on its progress bar. V2 prints the
+same table in well under a second (0.06 s on the machine in the recording), so
+its progress bar is gone before the frame changes.
+
+The numbers themselves agree, row for row: GOOSE `1.588 Kbit/s`, Sampled Values
+`10.245`/`10.246 Mbit/s`, `TOTAL 20.505 Mbit/s` in both. What differs on screen
+is the `%` column — `0.002` from the Python version against `0.001588` from V2,
+which [scales its precision to the value](#link-speed-and-the-load-percentage)
+rather than rounding small protocols away.
+
+That agreement is specific to this capture. [CHANGELOG.md](CHANGELOG.md) lists
+the classification fixes that do change the result on others, along with the
+rest of what the rewrite changed.
 
 ## System requirements
 
